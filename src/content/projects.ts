@@ -96,6 +96,59 @@ export type ProjectSlug = (typeof projects)[number]["slug"];
 
 // Migrated project bodies. Projects without an entry are not published yet.
 export const projectDetails: Partial<Record<ProjectSlug, ProjectDetail>> = {
+  "test-with-tiktok": {
+    deliverable: "digital infographics",
+    blocks: [
+      {
+        type: "paragraph",
+        parts: [
+          "Test with TikTok is an insights series for SEA advertisers to know how to use the platform for optimal business solutions. Besides our usual practice of read-to-comprehend before designing, we challenged ourselves to think of compelling ways to present graphics in the online article format.",
+          { br: true },
+        ],
+      },
+      {
+        type: "paragraph",
+        parts: [
+          "To make the content come alive for easier reading and keep the reader focused, our team crafted a series of gif visuals that animate at a reading pace. The format helps break down chunks of information into easy-to-follow guides for the readers’ eyes. ",
+        ],
+      },
+      {
+        type: "paragraph",
+        parts: [
+          "To see the infographics animated, please click ",
+          {
+            href: "https://www.tiktok.com/business/en-SG/blog/measure-the-real-impact-of-your-tiktok-video-views",
+            text: "here",
+          },
+          ".",
+        ],
+      },
+      { type: "paragraph", parts: ["\u200d", { br: true }] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/test-with-tiktok/test-with-tiktok-1.gif",
+        width: 900,
+        height: 515,
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/test-with-tiktok/test-with-tiktok-2.gif",
+        width: 900,
+        height: 515,
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/test-with-tiktok/test-with-tiktok-3.gif",
+        width: 900,
+        height: 515,
+      },
+    ],
+  },
   "wsg-sgunited-job-skills-sgujs": {
     deliverable: "event collaterals services / roadshow",
     blocks: [

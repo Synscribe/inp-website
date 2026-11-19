@@ -48,6 +48,7 @@ Use one implementation status: `wired`, `visual-only`, `partial`, `omitted`, or 
 - `/project/mnd-youth-challenge-video`: every measured box, figure, and paragraph matches; page heights match (4452px / 2400px). Pixel diff 0.06% / 0.15% (dev indicator, image resampling, sub-pixel image edges).
 - `/project/npark-green-plan`: every measured box, figure, and paragraph matches; page heights match (3442px / 2374px). Pixel diff 0.03% / 0.12% (dev indicator and image resampling). The animated GIF is byte-identical to the works thumbnail, so both use one file.
 - `/project/wsg-sgunited-job-skills-sgujs`: every measured box, figure, and paragraph matches; page heights match (4136px / 2301px). Pixel diff 0.03% / 0.15% (dev indicator and image resampling).
+- `/project/test-with-tiktok`: every measured box, figure, and paragraph matches; page heights match (3074px / 2037px). Pixel diff 0.09% / 0.27% (dev indicator and animated GIF frame timing).
 - Remaining pixel differences come from: marquee position (time-based), `next/image` re-encoding of the work thumbnails (no visible change), sub-pixel anti-aliasing, and the dev-only Next.js indicator.
 
 ## Decisions and approvals
