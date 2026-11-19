@@ -40,11 +40,13 @@ Use one implementation status: `wired`, `visual-only`, `partial`, `omitted`, or 
 - Desktop 1440×900 and mobile 390×844 (2x). Every measured section, heading, logo, card, button, and footer box matches the source within 1px, and full page heights are identical (5737px desktop, 4508px mobile).
 - `/our-works`: every measured box matches within 1px; page heights match (4346px desktop, 4664px mobile). Pixel diff 1.31% / 2.22%, from thumbnail resampling, GIF frame timing, and the dev indicator.
 - `/team`: every measured box matches within 1px; page heights match (3381px / 4676px). Pixel diff 0.08% / 0.14%. Mugshots are served through `next/image` from the 2560px source PNGs (2.6 to 3.2 MB each).
+- `/feature`: every measured box matches; page heights match (1261px / 1148px). Pixel diff 0.00% / 0.02% (dev indicator only). The source page has no heading; the clone adds a visually hidden `h1` ("Feature").
 - Remaining pixel differences come from: marquee position (time-based), `next/image` re-encoding of the work thumbnails (no visible change), sub-pixel anti-aliasing, and the dev-only Next.js indicator.
 
 ## Decisions and approvals
 
-| Date       | Decision                                                                               | Evidence or approver                                          | Checklist change      |
-| ---------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------- | --------------------- |
-| 2026-11-19 | Mobile menu made readable instead of reproducing the broken source menu                | Source capture at 390×844: links render at 0px visible height | CLONE-01 added (todo) |
-| 2026-11-19 | Homepage meta description uses the source hero sentence verbatim (the source has none) | Source HTML has no meta description                           | —                     |
+| Date       | Decision                                                                                                                             | Evidence or approver                                          | Checklist change      |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------- | --------------------- |
+| 2026-11-19 | Mobile menu made readable instead of reproducing the broken source menu                                                              | Source capture at 390×844: links render at 0px visible height | CLONE-01 added (todo) |
+| 2026-11-19 | `/feature` keeps the source's holding message and stays indexable, as on the source. Confirm whether to keep, rebuild, or retire it. | Source page content                                           | —                     |
+| 2026-11-19 | Homepage meta description uses the source hero sentence verbatim (the source has none)                                               | Source HTML has no meta description                           | —                     |
