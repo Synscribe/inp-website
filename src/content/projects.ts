@@ -96,6 +96,57 @@ export type ProjectSlug = (typeof projects)[number]["slug"];
 
 // Migrated project bodies. Projects without an entry are not published yet.
 export const projectDetails: Partial<Record<ProjectSlug, ProjectDetail>> = {
+  "mom-world-mental-health-day-2022": {
+    deliverable: "print (cards and booklet) / social media (facebook)",
+    blocks: [
+      {
+        type: "paragraph",
+        parts: [
+          "How do we raise awareness of mental health issues among our migrant workers without stereotypes and discrimination against a specific race? ",
+          { br: true },
+        ],
+      },
+      {
+        type: "paragraph",
+        parts: [
+          "Our solution is to illustrate original comic characters without using skin colour. We also carefully crafted characters with neutral facial features, hair and attire. Besides the card, deliverables include a set of comic series (written by the team and translated into various languages), and social media posts.",
+        ],
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/mom-world-mental-health-day-2022/mom-world-mental-health-day-2022-1.jpg",
+        width: 2000,
+        height: 1519,
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/mom-world-mental-health-day-2022/mom-world-mental-health-day-2022-2.jpg",
+        width: 2000,
+        height: 1461,
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/mom-world-mental-health-day-2022/mom-world-mental-health-day-2022-3.jpg",
+        width: 1680,
+        height: 1211,
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/mom-world-mental-health-day-2022/mom-world-mental-health-day-2022-4.jpg",
+        width: 2000,
+        height: 1400,
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+    ],
+  },
   "lta-annual-report": {
     deliverable: "publication : online (PDF)",
     blocks: [

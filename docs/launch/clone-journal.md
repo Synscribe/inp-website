@@ -43,6 +43,7 @@ Use one implementation status: `wired`, `visual-only`, `partial`, `omitted`, or 
 - `/feature`: every measured box matches; page heights match (1261px / 1148px). Pixel diff 0.00% / 0.02% (dev indicator only). The source page has no heading; the clone adds a visually hidden `h1` ("Feature").
 - `/project/npark-paper-models`: every measured box and figure matches to 0.1px; page heights match (3378px / 2030px). Pixel diff 0.04% / 0.15% (dev indicator and image resampling).
 - `/project/lta-annual-report`: every measured box, figure, and paragraph matches; page heights match (2602px / 1764px). Pixel diff 0.11% / 0.20% (dev indicator and image resampling).
+- `/project/mom-world-mental-health-day-2022`: every measured box, figure, and paragraph matches; page heights match (4196px / 2340px). Pixel diff 0.04% / 0.15% (dev indicator and image resampling).
 - Remaining pixel differences come from: marquee position (time-based), `next/image` re-encoding of the work thumbnails (no visible change), sub-pixel anti-aliasing, and the dev-only Next.js indicator.
 
 ## Decisions and approvals
