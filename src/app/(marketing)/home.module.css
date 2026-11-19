@@ -1,209 +1,805 @@
-.hero {
-  isolation: isolate;
-  overflow: hidden;
-  position: relative;
-}
+/*
+ * Homepage clone of https://www.inknpixel.com.sg/ (Webflow source).
+ * Geometry mirrors the source classes and breakpoints (991/767/568/479/1920).
+ * Timings mirror the source's Webflow interactions; every animation has a
+ * composed final state, and reduced motion shows that state immediately.
+ */
 
-.hero::before {
-  background-image:
-    linear-gradient(rgba(23, 32, 31, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(23, 32, 31, 0.055) 1px, transparent 1px);
-  background-size: 52px 52px;
-  content: "";
+/* ---------- Splash (CSS only: plays and clears without JavaScript) ---------- */
+
+.splash {
+  position: fixed;
   inset: 0;
-  mask-image: linear-gradient(to bottom, black, transparent 80%);
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
   pointer-events: none;
+  animation:
+    splash-fade 1000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) 3300ms forwards,
+    splash-hide 0ms linear 4300ms forwards;
+}
+
+.splashLoading {
   position: absolute;
-  z-index: -2;
+  inset: 0 auto auto 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--ip-blue);
+  background-image: url("/media/brand/logo-splash-white.png");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 120px;
+  background-attachment: fixed;
+  animation: splash-wipe 800ms cubic-bezier(0.445, 0.05, 0.55, 0.95) 1100ms
+    forwards;
 }
 
-.hero::after {
-  background: #bfe3d1;
-  border-radius: 999px;
-  content: "";
-  filter: blur(4px);
-  height: 28rem;
-  opacity: 0.58;
+.splashLogo {
+  width: 120px;
+  height: auto;
+}
+
+.splashCircle {
   position: absolute;
-  right: -14rem;
-  top: -13rem;
-  width: 28rem;
-  z-index: -1;
+  z-index: 5500;
+  width: 1px;
+  height: 1px;
+  border-radius: 1000%;
+  background-color: #fff;
+  animation: splash-circle 1300ms cubic-bezier(1, 0, 0, 1) 2000ms forwards;
 }
 
-.kicker::before {
-  background: #df5028;
-  border-radius: 999px;
-  content: "";
-  height: 0.55rem;
-  width: 0.55rem;
-}
-
-.displayTitle {
-  text-wrap: balance;
-}
-
-.signalBoard {
-  background:
-    radial-gradient(
-      circle at 100% 0%,
-      rgba(191, 227, 209, 0.18),
-      transparent 32%
-    ),
-    #12201e;
-  box-shadow: 0 38px 100px rgba(18, 32, 30, 0.23);
-  overflow: hidden;
-  position: relative;
-}
-
-.signalBoard::after {
-  border: 1px solid rgba(191, 227, 209, 0.2);
-  border-radius: 999px;
-  content: "";
-  height: 11rem;
-  position: absolute;
-  right: -5.5rem;
-  top: 5.5rem;
-  width: 11rem;
-}
-
-.pulse {
-  animation: pulse 2.4s ease-in-out infinite;
-  background: #8ed0ad;
-  border-radius: 999px;
-  box-shadow: 0 0 0 0 rgba(142, 208, 173, 0.45);
-  height: 0.5rem;
-  width: 0.5rem;
-}
-
-.checkRow {
-  animation: rise 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.checkRow:nth-child(2) {
-  animation-delay: 90ms;
-}
-
-.checkRow:nth-child(3) {
-  animation-delay: 180ms;
-}
-
-.checkRow:nth-child(4) {
-  animation-delay: 270ms;
-}
-
-.checkRow:nth-child(5) {
-  animation-delay: 360ms;
-}
-
-.principleCard {
-  background: rgba(251, 250, 246, 0.72);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease;
-}
-
-.principleCard:hover {
-  box-shadow: 0 24px 70px rgba(29, 41, 38, 0.08);
-  transform: translateY(-4px);
-}
-
-.priorityCard {
-  min-height: 24rem;
-  position: relative;
-}
-
-.priorityCard::before {
-  border-radius: 999px;
-  content: "";
-  height: 0.65rem;
-  left: 1.75rem;
-  position: absolute;
-  top: 1.75rem;
-  width: 0.65rem;
-}
-
-.priorityCard:nth-child(1)::before {
-  background: #df5028;
-}
-
-.priorityCard:nth-child(2)::before {
-  background: #7ab99b;
-}
-
-.priorityCard:nth-child(3)::before {
-  background: #89908c;
-}
-
-.stepNumber {
-  -webkit-text-stroke: 1px rgba(245, 242, 234, 0.35);
-  color: transparent;
-  font-family: Georgia, "Times New Roman", serif;
-}
-
-.codeWindow {
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px), #17201f;
-  background-size: 100% 2rem;
-  box-shadow: 0 34px 90px rgba(18, 32, 30, 0.18);
-}
-
-.faqItem {
-  border-bottom: 1px solid rgba(23, 32, 31, 0.15);
-}
-
-.faqItem summary {
-  list-style: none;
-}
-
-.faqItem summary::-webkit-details-marker {
-  display: none;
-}
-
-.faqMarker {
-  transition: transform 180ms ease;
-}
-
-.faqItem[open] .faqMarker {
-  transform: rotate(45deg);
-}
-
-.closingCard {
-  background:
-    radial-gradient(
-      circle at 90% 10%,
-      rgba(191, 227, 209, 0.22),
-      transparent 32%
-    ),
-    #c83f1b;
-  box-shadow: 0 34px 90px rgba(116, 42, 23, 0.2);
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
+@keyframes splash-wipe {
   to {
-    opacity: 1;
+    width: 100%;
+  }
+}
+
+@keyframes splash-circle {
+  to {
+    width: 3000px;
+    height: 3000px;
+  }
+}
+
+@keyframes splash-fade {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes splash-hide {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* ---------- Entrance shapes ---------- */
+
+.square {
+  position: absolute;
+  inset: -300px 11vw auto auto;
+  z-index: 6000;
+  width: 300px;
+  height: 300px;
+  background-color: var(--ip-turq);
+  transform: translateY(300px);
+  animation: square-drop 500ms cubic-bezier(0.42, 0, 1, 1) 4200ms backwards;
+  pointer-events: none;
+}
+
+.circle {
+  position: absolute;
+  inset: 300px -50vw auto auto;
+  z-index: 6000;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: var(--ip-blue);
+  transform: translateX(-61vw);
+  animation: circle-bounce 900ms linear 4000ms backwards;
+  pointer-events: none;
+}
+
+@keyframes square-drop {
+  from {
     transform: translateY(0);
   }
+  to {
+    transform: translateY(300px);
+  }
 }
 
-@keyframes pulse {
-  70% {
-    box-shadow: 0 0 0 8px rgba(142, 208, 173, 0);
+/* Webflow "bouncePast": reach the target, overshoot by 25%, settle. */
+@keyframes circle-bounce {
+  0% {
+    transform: translateX(0);
+    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
   }
-
+  36.36% {
+    transform: translateX(-61vw);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  54.55% {
+    transform: translateX(-76.25vw);
+    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  }
+  72.73% {
+    transform: translateX(-61vw);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  81.82% {
+    transform: translateX(-64.81vw);
+    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  }
+  90.91% {
+    transform: translateX(-61vw);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  95.45% {
+    transform: translateX(-61.95vw);
+    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  }
   100% {
-    box-shadow: 0 0 0 0 rgba(142, 208, 173, 0);
+    transform: translateX(-61vw);
   }
 }
 
-@media (max-width: 767px) {
-  .priorityCard {
-    min-height: auto;
+/* ---------- Left section tracker ---------- */
+
+.tracker {
+  position: fixed;
+  inset: 0 auto auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  height: 100vh;
+}
+
+.trackerContainer {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: auto;
+  transform: rotate(-90deg);
+}
+
+.inLogo {
+  flex: 5 1 0;
+  min-width: 24px;
+  max-width: 0%;
+  padding: 60px;
+  background-image: url("/media/shared/linkedin-logo.svg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  transform: rotate(90deg);
+}
+
+.inLink {
+  display: block;
+  margin: auto auto auto -60px;
+  padding: 60px;
+}
+
+.trackerRail {
+  flex: 0 auto;
+  width: 178px;
+  height: 2px;
+  background-color: var(--ip-rail);
+}
+
+.trackerHeading {
+  width: 85px;
+  height: 20px;
+  margin-left: 16px;
+}
+
+/* Inside the rotated container, fixed labels resolve against it (as on the
+   source), so all three stack in the same slot. */
+.trackerItem {
+  position: fixed;
+  opacity: 0;
+  color: var(--ip-grey-900);
+}
+
+.trackerItemLato {
+  font-family: var(--font-lato), sans-serif;
+  font-size: 16px;
+  line-height: 140%;
+}
+
+.trackerItemStatic {
+  position: static;
+}
+
+@media screen and (min-width: 1440px) {
+  .inLogo {
+    padding: 40px;
+  }
+
+  .inLink {
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .trackerRail {
+    background-color: #67666680;
+  }
+
+  .trackerHeading {
+    position: relative;
+    width: 120px;
+    height: 25px;
+    padding-left: 6px;
+  }
+
+  .trackerItem {
+    position: absolute;
+  }
+}
+
+/* ---------- Cursor follower ---------- */
+
+.mouseWrapper {
+  position: fixed;
+  inset: 0 auto auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.cursor {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  background-color: var(--ip-turq);
+  opacity: 0;
+  will-change: transform;
+}
+
+@media screen and (min-width: 1920px) {
+  .mouseWrapper {
+    z-index: 0;
+  }
+
+  .cursor {
+    z-index: 7000;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .mouseWrapper {
+    display: none;
+  }
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+  position: relative;
+  display: block;
+  padding: 10% 15%;
+  color: #fff;
+  font-weight: 400;
+  text-align: left;
+}
+
+.divider {
+  width: 178px;
+  height: 2px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: var(--ip-grey-900);
+}
+
+/* Hero */
+
+.introHeadline {
+  position: relative;
+  display: inline-block;
+  color: var(--ip-grey-900);
+  line-height: 100%;
+}
+
+.heading {
+  display: block;
+  margin: 20px 0 10px auto;
+  padding: 0 22px 8px 0;
+  font-size: 150px;
+  font-weight: 200;
+  line-height: 90%;
+  text-align: left;
+}
+
+.fullStop {
+  position: absolute;
+  inset: auto 0 0 auto;
+  width: 15px;
+  height: auto;
+  margin-bottom: 31px;
+}
+
+.introDesc {
+  width: 64%;
+  margin: 20px 0 10px;
+  padding-left: 5px;
+  color: var(--ip-grey-900);
+  font-size: 54px;
+  font-weight: 700;
+  line-height: 114%;
+}
+
+/* Clients */
+
+.clients {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: row;
+  gap: 3em;
+  place-content: space-between;
+  width: auto;
+  max-width: 110%;
+  height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.clientLogo {
+  display: block;
+  width: 243px;
+  max-width: 100%;
+  height: auto;
+  place-self: center;
+  filter: saturate(0%);
+  transition: filter 0.3s ease-in-out;
+}
+
+.clientLogo:hover {
+  filter: saturate(100%);
+}
+
+/* Services marquee */
+
+.services {
+  overflow: hidden;
+}
+
+.liner {
+  display: flex;
+  animation: marquee-px var(--marquee-duration) linear infinite;
+}
+
+.linerOffset {
+  margin-left: -242%;
+  animation-name: marquee-percent;
+}
+
+.linerText {
+  display: inline-block;
+  flex: none;
+  margin: 0 1rem 0 0;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  color: var(--ip-grey-900);
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 97%;
+  white-space: nowrap;
+}
+
+@keyframes marquee-px {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(var(--marquee-distance));
+  }
+}
+
+@keyframes marquee-percent {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(70.7%);
+  }
+}
+
+/* Works */
+
+.worksList {
+  display: flow-root;
+  padding-bottom: 32px;
+}
+
+.workItem {
+  position: relative;
+  float: left;
+  height: 100%;
+  max-height: 550px;
+  overflow: hidden;
+}
+
+.workItem:nth-child(1n) {
+  width: 40%;
+}
+
+.workItem:nth-child(2n) {
+  width: 60%;
+}
+
+.workItem:nth-child(3n) {
+  width: 65%;
+}
+
+.workItem:nth-child(4n) {
+  width: 35%;
+}
+
+.workItem:nth-child(5n) {
+  width: 100%;
+}
+
+.workItem:nth-child(6n),
+.workItem:nth-child(7n),
+.workItem:nth-child(8n) {
+  width: 33.3%;
+}
+
+.workLink {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  text-decoration: none;
+}
+
+.workOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #231f20cc;
+  opacity: 0;
+  transition: opacity 0.35s ease-in;
+}
+
+.workLink:hover .workOverlay,
+.workLink:focus-visible .workOverlay {
+  opacity: 1;
+}
+
+.workTitle {
+  margin: 0 0 10px;
+  color: #fff;
+  font-size: 35px;
+  font-weight: 600;
+  line-height: 110%;
+  text-align: center;
+}
+
+.workMedia {
+  position: relative;
+  height: 550px;
+  transition: all 200ms ease-in;
+}
+
+.workItem:hover .workMedia {
+  transform: scale(1.1);
+}
+
+.workImage {
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+/* View more */
+
+.viewMore {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 0 28px 5px 19px;
+  border: 1px solid var(--ip-blue);
+  border-radius: 500px;
+  color: #fff;
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 22.4px;
+  text-decoration: none;
+}
+
+.viewMoreInner {
+  position: relative;
+}
+
+.viewMoreText {
+  display: inline-block;
+  margin: 10px 32px 7px 0;
+  color: var(--ip-blue);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  transition: color 200ms;
+}
+
+.viewMoreIcon {
+  position: relative;
+  display: inline-block;
+}
+
+.arrow {
+  display: inline-block;
+  width: auto;
+  height: 20px;
+  margin-top: 3px;
+  vertical-align: middle;
+}
+
+.arrowHover {
+  position: absolute;
+  inset: auto 0 50%;
+  height: 20px;
+  margin-top: auto;
+  margin-bottom: -11px;
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.viewMoreFill {
+  position: absolute;
+  inset: 100% auto auto -1%;
+  z-index: -1;
+  width: 102%;
+  height: 50px;
+  background-color: var(--ip-blue);
+  transition: transform 200ms;
+}
+
+.viewMore:hover .viewMoreFill,
+.viewMore:focus-visible .viewMoreFill {
+  transform: translateY(-100%);
+}
+
+.viewMore:hover .viewMoreText,
+.viewMore:focus-visible .viewMoreText {
+  color: #fff;
+}
+
+.viewMore:hover .arrowHover,
+.viewMore:focus-visible .arrowHover {
+  opacity: 1;
+}
+
+/* Vertical email link */
+
+.emailRail {
+  position: fixed;
+  inset: 0 0 auto auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 10vw;
+  height: 100vh;
+  text-align: center;
+}
+
+.emailLink {
+  position: fixed;
+  display: inline-block;
+  color: var(--ip-grey-900);
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 22.4px;
+  text-align: justify;
+  text-decoration: underline;
+  transform: rotate(-90deg);
+}
+
+.emailWrapper {
+  display: block;
+  height: 20px;
+  overflow: hidden;
+}
+
+.emailText {
+  display: block;
+  transition: transform 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.emailLink:hover .emailText,
+.emailLink:focus-visible .emailText {
+  transform: translateY(-24px);
+}
+
+/* Side rails fade out while the footer's dark treatment is showing. */
+.emailLink,
+.trackerContainer {
+  transition: opacity 500ms;
+}
+
+:global(html[data-footer-in-view="true"]) .emailLink,
+:global(html[data-footer-in-view="true"]) .trackerContainer {
+  opacity: 0;
+}
+
+/* ---------- Breakpoints ---------- */
+
+@media screen and (min-width: 1920px) {
+  .splashLogo {
+    width: 140px;
+  }
+
+  .splashLoading {
+    background-size: 140px;
+  }
+
+  .workItem {
+    max-height: 680px;
+  }
+
+  .workMedia {
+    height: 680px;
+  }
+
+  .viewMore {
+    font-size: 32px;
+  }
+
+  .arrow,
+  .arrowHover {
+    height: 1.5rem;
+  }
+
+  .arrowHover {
+    margin-bottom: -14px;
+  }
+
+  .emailLink {
+    height: 20px;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .square,
+  .circle {
+    display: none;
+  }
+
+  .heading {
+    font-size: 120px;
+  }
+
+  .fullStop {
+    inset: auto 0 -10% auto;
+    width: 16px;
+    max-width: 90%;
+    margin-bottom: 42px;
+  }
+
+  .introDesc {
+    width: 100%;
+    font-size: 32px;
+  }
+
+  .clients {
+    gap: 2.5em;
+  }
+
+  .workItem {
+    max-height: 300px;
+  }
+
+  .workMedia {
+    height: 300px;
+  }
+
+  .workTitle {
+    font-size: 32px;
+  }
+
+  .emailRail {
+    width: 10%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .clients {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2em;
+  }
+
+  .workTitle {
+    font-size: 22px;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .workItem:nth-child(1n) {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .splashLogo {
+    width: 250px;
+  }
+
+  .splashLoading {
+    background-size: 250px;
+  }
+
+  .heading {
+    font-size: 64px;
+  }
+
+  .fullStop {
+    width: 10px;
+    margin-right: 10px;
+    margin-bottom: 26px;
+  }
+
+  .introDesc {
+    font-size: 24px;
+  }
+
+  .clients {
+    gap: 1em;
+  }
+
+  .viewMore {
+    padding-right: 9px;
+    padding-left: 9px;
+    font-size: 24px;
+  }
+
+  .viewMoreInner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .viewMoreText {
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .arrow,
+  .arrowHover {
+    height: 1rem;
+  }
+
+  .emailLink {
+    font-size: 16px;
+  }
+}
+
+/* Reduced motion: skip the splash and show every animated surface in its
+   final composed state. (globals.css also disables animations globally.) */
+@media (prefers-reduced-motion: reduce) {
+  .splash {
+    display: none;
+  }
+
+  .liner {
+    animation: none;
   }
 }

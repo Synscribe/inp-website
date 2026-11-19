@@ -581,6 +581,16 @@ PostHog is included by default but inactive without a token. Verify the producti
 
 Check Search Console, analytics, uptime/error monitoring, and field performance after launch. Decide how often to review them and what should trigger rollback or remediation.
 
+## P1 — project-specific launch checks
+
+### CLONE-01 — mobile menu deviation from the source is approved
+
+- [ ] **Todo**
+- Recipe: [docs/launch/clone-journal.md](./clone-journal.md)
+
+The source mobile menu is broken: its links render clipped to zero visible height.
+The clone shows readable, right-aligned links in the source type style. Confirm this change with the client.
+
 ## P2 — later enhancements
 
 ### LLM-01 — `llms.txt` is client-specific, useful, and current

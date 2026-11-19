@@ -6,16 +6,29 @@ export type NavigationItem = {
 };
 
 export const siteConfig = Object.freeze({
-  name: "Launch Template",
+  name: "Ink and Pixel",
+  legalName: "ink and pixel pte ltd",
   description:
-    "Launch Template is a Next.js website foundation for developers and business owners building with Claude Code, Codex, or another AI coding tool.",
+    "We are a creative agency with an extended network of expertise. Our agency is about people who love creating, designing and developing projects.",
   url: env.siteUrl,
   locale: "en-SG",
   navigation: [
-    { label: "Use Cases", href: "/uses" },
-    { label: "Blog", href: "/blog" },
-    { label: "Contact", href: "/contact" },
+    { label: "works", href: "/our-works" },
+    { label: "team", href: "/team" },
+    { label: "feature", href: "/feature" },
   ] satisfies NavigationItem[],
+  contactAnchor: {
+    label: "contact",
+    href: "#contact",
+  } satisfies NavigationItem,
+  contact: {
+    email: "ask@inknpixel.com.sg",
+    phone: "+65 6345 3200",
+    addressLines: ["78 circular road #02-01", "singapore 049432"],
+  },
+  social: {
+    linkedin: "https://www.linkedin.com/company/ink-and-pixel-pte-ltd",
+  },
 });
 
 export type SiteConfig = typeof siteConfig;

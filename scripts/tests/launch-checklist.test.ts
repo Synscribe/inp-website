@@ -17,10 +17,10 @@ describe("launch checklist", () => {
     );
 
     expect(checklist.items).toHaveLength(44);
-    expect(checklist.projectItems).toEqual([]);
+    // Client projects add their own checks with --add-project; IDs stay unique.
     expect(
       new Set(allChecklistItems(checklist).map((item) => item.id)).size,
-    ).toBe(44);
+    ).toBe(44 + checklist.projectItems.length);
     expect(checklist.items.find((item) => item.id === "SEO-02")?.priority).toBe(
       "P0",
     );

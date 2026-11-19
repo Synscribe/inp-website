@@ -1,54 +1,49 @@
-import Link from "next/link";
-
-import { usesDefaultSiteUrl } from "@/config/env";
 import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
+
+import { FooterInView } from "./footer-in-view";
+import styles from "./site-shell.module.css";
 
 export function SiteFooter() {
+  const { contact, legalName } = siteConfig;
+
   return (
-    <footer className="border-t border-ink/10 bg-paper">
-      <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 py-12 sm:px-8 md:grid-cols-[1fr_auto] md:items-end">
-        <div>
-          <Link href="/" className="font-semibold tracking-tight">
-            {siteConfig.name}
-          </Link>
-          <p className="mt-3 max-w-xl text-sm leading-6 text-ink-muted">
-            A lean reference for building, migrating, checking, and launching
-            client websites without inheriting yesterday&apos;s defaults.
+    <footer className={styles.footer}>
+      <FooterInView />
+      <div aria-hidden="true" className={styles.footerBackground} />
+      <div className={styles.footerContainer}>
+        <div className={styles.footerHeading}>
+          <p className={styles.footerKicker}>got something in mind?</p>
+          <h2 className={styles.footerTitle} id="contact">
+            let’s talk.
+          </h2>
+        </div>
+        <div className={styles.footerBody}>
+          <p className={styles.contactLabel}>click /</p>
+          <p className={cn(styles.contactContent, styles.contactEmphasis)}>
+            {contact.email}
           </p>
         </div>
-
-        <nav aria-label="Footer navigation">
-          <ul className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-ink-muted md:justify-end">
-            <li>
-              <Link className="hover:text-ink" href="/contact">
-                Contact
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:text-ink" href="/blog">
-                Blog
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:text-ink" href="/privacy">
-                Privacy
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:text-ink" href="/terms">
-                Terms
-              </Link>
-            </li>
-          </ul>
-        </nav>
-
-        <p className="text-xs text-ink-faint md:col-span-2">
-          © {new Date().getFullYear()} {siteConfig.name}.
-          {usesDefaultSiteUrl
-            ? " Replace this identity before production."
-            : ""}
-        </p>
+        <div className={styles.footerBody}>
+          <p className={styles.contactLabel}>visit /</p>
+          <p className={styles.contactContent}>
+            {contact.addressLines[0]}
+            <br />
+            {contact.addressLines[1]}
+          </p>
+        </div>
+        <div className={styles.footerBody}>
+          <p className={styles.contactLabel}>call /</p>
+          <p className={styles.contactContent}>{contact.phone}</p>
+        </div>
       </div>
+      <ul className={styles.pageFooter}>
+        <li className={cn(styles.footerItem, styles.footerItemFirst)}>
+          {legalName}
+        </li>
+        <li className={styles.footerItem}>© 2025</li>
+        <li className={styles.footerItem}>all rights reserved</li>
+      </ul>
     </footer>
   );
 }

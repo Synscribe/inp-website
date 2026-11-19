@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Lato } from "next/font/google";
 import { Suspense } from "react";
 
 import { VisitorContextTracker } from "@/app/contact/_components/visitor-context-tracker";
@@ -12,6 +13,15 @@ import {
 } from "@/lib/seo";
 
 import "./globals.css";
+
+// The source loads Lato for one section-tracker label; Switzer is self-hosted
+// through globals.css.
+const lato = Lato({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-lato",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -29,7 +39,7 @@ export default function RootLayout({
   const websiteJsonLd = buildWebsiteJsonLd();
 
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html className={lato.variable} data-scroll-behavior="smooth" lang="en">
       <body>
         <script
           type="application/ld+json"
@@ -47,11 +57,9 @@ export default function RootLayout({
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>
-        <div className="flex min-h-screen flex-col">
-          <SiteHeader />
-          <div className="flex-1">{children}</div>
-          <SiteFooter />
-        </div>
+        <SiteHeader />
+        {children}
+        <SiteFooter />
       </body>
     </html>
   );

@@ -821,7 +821,20 @@
       ]
     }
   ],
-  "projectItems": [],
+  "projectItems": [
+    {
+      "id": "CLONE-01",
+      "title": "mobile menu deviation from the source is approved",
+      "priority": "P1",
+      "group": "project-specific launch checks",
+      "status": "todo",
+      "details": [
+        "The source mobile menu is broken: its links render clipped to zero visible height.",
+        "The clone shows readable, right-aligned links in the source type style. Confirm this change with the client."
+      ],
+      "recipe": "docs/launch/clone-journal.md"
+    }
+  ],
   "primaryReferences": [
     {
       "label": "Next.js Metadata and OG images",

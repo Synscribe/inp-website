@@ -1,0 +1,390 @@
+/*
+ * Site shell (header + footer) cloned from the Webflow source.
+ * Breakpoints mirror Webflow: 991px (tablet), 767px (landscape phone),
+ * 479px (portrait phone), 1920px (large desktop).
+ */
+
+/* ---------- Header ---------- */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  display: block;
+  margin-bottom: 32px;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+.navBar {
+  position: relative;
+  z-index: 1000;
+  width: 100%;
+  padding: 0.5rem 0;
+}
+
+/* Webflow's w-container adds empty ::before/::after table boxes. Inside this
+   flex row they become zero-width items, so the 2% gap also appears at both
+   edges. Reproduce that geometry explicitly. */
+.navWrapper {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 2%;
+  width: 100%;
+}
+
+.navWrapper::before,
+.navWrapper::after {
+  content: "";
+  display: block;
+  width: 0;
+}
+
+.logoLink {
+  display: block;
+  flex: 0 1 auto;
+}
+
+.logo {
+  display: inline-block;
+  width: 140px;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.navMenu {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 8%;
+  padding-right: 1%;
+}
+
+.primaryNav {
+  position: relative;
+  width: 100%;
+  padding: 0.5rem 0;
+  text-align: center;
+}
+
+.contactNav {
+  position: relative;
+  flex: none;
+  width: auto;
+  padding: 0.5rem 0;
+  text-align: right;
+}
+
+.navLink {
+  display: inline-block;
+  height: 20px;
+  padding: 0 20px;
+  overflow: hidden;
+  color: var(--ip-grey-900);
+  font-size: 19px;
+  line-height: 22.4px;
+  text-align: left;
+  text-decoration: none;
+}
+
+.navText,
+.navTextHover {
+  display: block;
+  transition: transform 200ms ease-out;
+}
+
+/* The source animates only the team and feature links on hover. */
+.navLinkSlide:hover .navText,
+.navLinkSlide:hover .navTextHover,
+.navLinkSlide:focus-visible .navText,
+.navLinkSlide:focus-visible .navTextHover {
+  transform: translateY(-24px);
+}
+
+.menuButton {
+  display: none;
+}
+
+.mobilePanel {
+  display: none;
+}
+
+@media screen and (min-width: 1920px) {
+  .header {
+    z-index: 300;
+  }
+
+  .navMenu {
+    padding-left: 7%;
+    padding-right: 0;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .navBar {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .logo {
+    display: block;
+    width: auto;
+    height: 2rem;
+  }
+
+  .navMenu {
+    display: none;
+  }
+
+  .menuButton {
+    display: block;
+    flex: 1;
+    padding: 18px;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    font-size: 24px;
+    line-height: 22.4px;
+    text-align: right;
+    cursor: pointer;
+  }
+
+  .menuIcon {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+  }
+
+  .mobilePanel {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: block;
+    padding-bottom: 20px;
+    background: var(--paper);
+  }
+
+  .mobilePanel[hidden] {
+    display: none;
+  }
+
+  .mobileLink {
+    display: block;
+    padding: 20px 20px 0;
+    color: var(--ip-grey-900);
+    font-size: 19px;
+    line-height: 22.4px;
+    text-align: right;
+    text-decoration: none;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .header {
+    margin-bottom: 2px;
+  }
+
+  .menuButton[aria-expanded="true"] {
+    background-color: var(--paper);
+  }
+
+  .menuIcon {
+    width: 20px;
+  }
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  position: relative;
+  display: block;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 120px 0 48px;
+  color: var(--ip-grey-900);
+}
+
+/* Black panel that slides up behind the footer while it is in view. */
+.footerBackground {
+  position: absolute;
+  inset: 101% auto auto 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  transition: transform 500ms ease-in-out;
+}
+
+.footer[data-footer-in-view="true"] .footerBackground {
+  transform: translateY(-101%);
+}
+
+.footerContainer {
+  max-width: 1920px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15%;
+  padding-left: 15%;
+  transition: color 300ms ease-in-out;
+}
+
+.footer[data-footer-in-view="true"] .footerContainer {
+  color: #fff;
+}
+
+.footerHeading {
+  width: 80%;
+  border-bottom: 1px solid #000;
+  transition: border-color 500ms;
+}
+
+.footer[data-footer-in-view="true"] .footerHeading {
+  border-bottom-color: #fff;
+}
+
+.footerKicker {
+  margin: 20px 0 10px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+.footerTitle {
+  margin: 20px 0 10px;
+  font-size: 80px;
+  font-weight: 100;
+  line-height: 97%;
+  scroll-margin-top: 80px;
+}
+
+.footerBody {
+  padding: 18px 0;
+}
+
+.contactLabel {
+  margin: 0 0 10px;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 150%;
+}
+
+.contactContent {
+  margin: 0 0 10px;
+  font-size: 24px;
+  line-height: 115%;
+}
+
+.contactEmphasis {
+  margin-left: -2px;
+  font-size: 42px;
+  font-weight: 900;
+}
+
+.pageFooter {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 10px;
+  padding-left: 40px;
+  list-style: none;
+}
+
+.footerItem {
+  padding: 8px 26px;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  border-left: 2px solid #000;
+  color: var(--ip-grey-900);
+  font-size: 14px;
+  line-height: 22.4px;
+  transition:
+    color 500ms,
+    border-color 500ms;
+}
+
+.footer[data-footer-in-view="true"] .footerItem {
+  border-color: #fff;
+  color: #fff;
+}
+
+.footerItemFirst {
+  padding-top: 9px;
+  padding-bottom: 9px;
+  border-left-width: 0;
+}
+
+@media screen and (min-width: 1920px) {
+  .footerContainer {
+    padding-right: 3%;
+    padding-left: 3%;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .footer {
+    padding-bottom: 2%;
+  }
+
+  .footerTitle {
+    margin-top: 0;
+  }
+
+  .footerItem {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .contactLabel {
+    margin-bottom: 0;
+  }
+
+  .contactEmphasis {
+    font-size: 32px;
+  }
+
+  .footerItem {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .footerItemFirst {
+    padding-top: 9px;
+    padding-bottom: 9px;
+  }
+
+  .footerTitle {
+    font-size: 64px;
+  }
+
+  .footerKicker {
+    font-size: 16px;
+    line-height: 110%;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .footer {
+    padding-right: 12%;
+    padding-left: 12%;
+  }
+
+  .contactContent {
+    font-size: 16px;
+  }
+
+  .contactEmphasis {
+    font-size: 22px;
+  }
+
+  .footerTitle {
+    font-size: 54px;
+  }
+}

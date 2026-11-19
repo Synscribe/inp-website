@@ -1,126 +1,95 @@
 "use client";
 
-import { ArrowRightIcon, MenuIcon, XIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 
 import type { NavigationItem } from "@/config/site";
 
+import styles from "./site-shell.module.css";
+
 type MobileNavProps = {
-  navigation: readonly NavigationItem[];
-  primaryAction: {
-    href: string;
-    label: string;
-  };
+  items: readonly NavigationItem[];
 };
 
-export function MobileNav({ navigation, primaryAction }: MobileNavProps) {
+/**
+ * Below 992px the source shows a two-by-two dot toggle. The source's open
+ * menu renders its links clipped to zero visible height; this version keeps
+ * the same visual language but makes the links readable. See
+ * docs/launch/clone-journal.md.
+ */
+export function MobileNav({ items }: MobileNavProps) {
   const [open, setOpen] = useState(false);
-  const menuId = useId();
-  const panelRef = useRef<HTMLDivElement>(null);
+  const panelId = useId();
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!open) return;
-    panelRef.current?.querySelector<HTMLElement>("a[href]")?.focus();
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      setOpen(false);
+      triggerRef.current?.focus();
+    }
+
+    function onPointerDown(event: PointerEvent) {
+      const target = event.target as Node;
+      if (
+        panelRef.current?.contains(target) ||
+        triggerRef.current?.contains(target)
+      ) {
+        return;
+      }
+      setOpen(false);
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
   }, [open]);
 
   return (
-    <div
-      className="relative md:hidden"
-      onKeyDown={(event) => {
-        if (!open) return;
-
-        if (event.key === "Escape") {
-          event.preventDefault();
-          setOpen(false);
-          triggerRef.current?.focus();
-          return;
-        }
-
-        if (event.key !== "Tab") return;
-
-        const panelControls = panelRef.current?.querySelectorAll<HTMLElement>(
-          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
-        );
-        const focusable = [
-          triggerRef.current,
-          ...(panelControls ? Array.from(panelControls) : []),
-        ].filter((element): element is HTMLElement => Boolean(element));
-        const first = focusable[0];
-        const last = focusable.at(-1);
-
-        if (event.shiftKey && document.activeElement === first) {
-          event.preventDefault();
-          last?.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
-          event.preventDefault();
-          first?.focus();
-        }
-      }}
-    >
+    <>
       <button
-        aria-controls={menuId}
+        aria-controls={panelId}
         aria-expanded={open}
-        aria-label={open ? "Close navigation" : "Open navigation"}
-        className="relative z-[60] grid size-10 place-items-center rounded-full border border-ink/10 bg-paper text-ink"
+        aria-label={open ? "Close menu" : "Open menu"}
+        className={styles.menuButton}
         onClick={() => setOpen((current) => !current)}
         ref={triggerRef}
         type="button"
       >
-        {open ? (
-          <XIcon className="size-5" aria-hidden="true" />
-        ) : (
-          <MenuIcon className="size-5" aria-hidden="true" />
-        )}
+        {/* eslint-disable-next-line @next/next/no-img-element -- tiny source SVG icon */}
+        <img
+          alt=""
+          className={styles.menuIcon}
+          height={32}
+          src="/media/shared/menu-toggle.svg"
+          width={32}
+        />
       </button>
-
-      {open ? (
-        <>
-          <button
-            aria-hidden="true"
-            className="fixed inset-0 z-40 cursor-default bg-ink/5"
-            onClick={() => {
-              setOpen(false);
-              triggerRef.current?.focus();
-            }}
-            tabIndex={-1}
-            type="button"
-          />
-          <div
-            aria-label="Site navigation"
-            aria-modal="true"
-            className="absolute top-12 right-0 z-50 w-64 rounded-2xl border border-ink/10 bg-paper p-3 shadow-[var(--shadow-card)]"
-            id={menuId}
-            ref={panelRef}
-            role="dialog"
-          >
-            <nav aria-label="Mobile navigation">
-              <ul className="space-y-1">
-                {navigation.map((item) => (
-                  <li key={item.href}>
-                    <Link
-                      className="block rounded-xl px-3 py-2.5 text-sm font-medium text-ink-muted hover:bg-canvas hover:text-ink"
-                      href={item.href}
-                      onClick={() => setOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+      <div
+        className={styles.mobilePanel}
+        hidden={!open}
+        id={panelId}
+        ref={panelRef}
+      >
+        <nav aria-label="Mobile navigation">
+          {items.map((item) => (
             <Link
-              className="mt-3 flex items-center justify-between rounded-xl bg-signal px-3 py-2.5 text-sm font-semibold text-white"
-              href={primaryAction.href}
+              className={styles.mobileLink}
+              href={item.href}
+              key={item.href}
               onClick={() => setOpen(false)}
             >
-              {primaryAction.label}
-              <ArrowRightIcon className="size-4" aria-hidden="true" />
+              {item.label}
             </Link>
-          </div>
-        </>
-      ) : null}
-    </div>
+          ))}
+        </nav>
+      </div>
+    </>
   );
 }
