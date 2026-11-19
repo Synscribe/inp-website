@@ -2,13 +2,16 @@
 
 import { useEffect, useRef } from "react";
 
-import styles from "../home.module.css";
+import styles from "./rails.module.css";
 
-// Source interaction "follow mouse cursor": smoothing 61 per frame.
-const FOLLOW_FACTOR = 0.39;
+type CursorFollowerProps = {
+  /** Webflow "follow mouse cursor" smoothing (0-100) for this page. */
+  smoothing: number;
+};
 
 /** Decorative turquoise square that trails the pointer on hover devices. */
-export function CursorFollower() {
+export function CursorFollower({ smoothing }: CursorFollowerProps) {
+  const followFactor = 1 - smoothing / 100;
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,7 +27,7 @@ export function CursorFollower() {
     let visible = false;
 
     function render() {
-      const factor = reducedMotion ? 1 : FOLLOW_FACTOR;
+      const factor = reducedMotion ? 1 : followFactor;
       current.x += (target.x - current.x) * factor;
       current.y += (target.y - current.y) * factor;
       cursor!.style.transform = `translate3d(${current.x}px, ${current.y}px, 0)`;
@@ -53,7 +56,7 @@ export function CursorFollower() {
       window.removeEventListener("pointermove", onPointerMove);
       cancelAnimationFrame(frame);
     };
-  }, []);
+  }, [followFactor]);
 
   return (
     <div aria-hidden="true" className={styles.mouseWrapper}>

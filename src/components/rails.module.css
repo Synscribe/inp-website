@@ -1,0 +1,207 @@
+/*
+ * Fixed side rails shared by the cloned pages: the cursor-following square,
+ * the left section tracker (LinkedIn mark, rail, label) and the vertical
+ * email link. Geometry mirrors the Webflow source classes.
+ */
+
+/* ---------- Cursor follower ---------- */
+
+.mouseWrapper {
+  position: fixed;
+  inset: 0 auto auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.cursor {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  background-color: var(--ip-turq);
+  opacity: 0;
+  will-change: transform;
+}
+
+@media screen and (min-width: 1920px) {
+  .mouseWrapper {
+    z-index: 0;
+  }
+
+  .cursor {
+    z-index: 7000;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .mouseWrapper {
+    display: none;
+  }
+}
+
+/* ---------- Left section tracker ---------- */
+
+.tracker {
+  position: fixed;
+  inset: 0 auto auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  height: 100vh;
+}
+
+.trackerInner {
+  z-index: 10;
+}
+
+.trackerContainer {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: auto;
+  transform: rotate(-90deg);
+  transition: opacity 500ms;
+}
+
+.inLogo {
+  flex: 5 1 0;
+  min-width: 24px;
+  max-width: 0%;
+  padding: 60px;
+  background-image: url("/media/shared/linkedin-logo.svg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  transform: rotate(90deg);
+}
+
+/* The source uses two link classes here: `link-block-9` (homepage, feature)
+   switches display by breakpoint; `link-block-10/11` stay inline-block,
+   which adds a line box and makes the tracker slightly taller. */
+.inLink {
+  display: inline-block;
+  max-width: 100%;
+  margin: auto auto auto -60px;
+  padding: 60px;
+}
+
+.trackerRail {
+  flex: 0 auto;
+  width: 178px;
+  height: 2px;
+  background-color: var(--ip-rail);
+}
+
+.trackerHeading {
+  width: 85px;
+  height: 20px;
+  margin-left: 16px;
+  color: var(--ip-grey-900);
+}
+
+@media screen and (min-width: 1440px) {
+  .inLogo {
+    padding: 40px;
+  }
+
+  .inLinkSwitch {
+    display: flex;
+  }
+
+  .trackerInner {
+    min-height: 60px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .trackerRail {
+    background-color: #67666680;
+  }
+
+  .trackerHeading {
+    position: relative;
+    width: 120px;
+    height: 25px;
+    padding-left: 6px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .inLinkSwitch {
+    display: block;
+  }
+}
+
+/* ---------- Vertical email link ---------- */
+
+.emailRail {
+  position: fixed;
+  inset: 0 0 auto auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 10vw;
+  height: 100vh;
+  text-align: center;
+}
+
+.emailLink {
+  position: fixed;
+  display: inline-block;
+  color: var(--ip-grey-900);
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 22.4px;
+  text-align: justify;
+  text-decoration: underline;
+  transform: rotate(-90deg);
+  transition: opacity 500ms;
+}
+
+.emailWrapper {
+  display: block;
+  height: 20px;
+  overflow: hidden;
+}
+
+.emailText {
+  display: block;
+  transition: transform 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.emailLink:hover .emailText,
+.emailLink:focus-visible .emailText {
+  transform: translateY(-24px);
+}
+
+@media screen and (min-width: 1920px) {
+  .emailLink {
+    height: 20px;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .emailRail {
+    width: 10%;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .emailLink {
+    font-size: 16px;
+  }
+}
+
+/* Side rails fade out while the footer's dark treatment is showing. */
+:global(html[data-footer-in-view="true"]) .emailLink,
+:global(html[data-footer-in-view="true"]) .trackerContainer {
+  opacity: 0;
+}

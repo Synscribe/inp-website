@@ -149,58 +149,9 @@
   }
 }
 
-/* ---------- Left section tracker ---------- */
+/* ---------- Section tracker labels (inside the shared SectionRail) ---------- */
 
-.tracker {
-  position: fixed;
-  inset: 0 auto auto 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 10%;
-  height: 100vh;
-}
-
-.trackerContainer {
-  display: flex;
-  flex: none;
-  align-items: center;
-  justify-content: flex-start;
-  margin-left: auto;
-  transform: rotate(-90deg);
-}
-
-.inLogo {
-  flex: 5 1 0;
-  min-width: 24px;
-  max-width: 0%;
-  padding: 60px;
-  background-image: url("/media/shared/linkedin-logo.svg");
-  background-position: 50%;
-  background-repeat: no-repeat;
-  transform: rotate(90deg);
-}
-
-.inLink {
-  display: block;
-  margin: auto auto auto -60px;
-  padding: 60px;
-}
-
-.trackerRail {
-  flex: 0 auto;
-  width: 178px;
-  height: 2px;
-  background-color: var(--ip-rail);
-}
-
-.trackerHeading {
-  width: 85px;
-  height: 20px;
-  margin-left: 16px;
-}
-
-/* Inside the rotated container, fixed labels resolve against it (as on the
+/* Inside the rotated rail, fixed labels resolve against it (as on the
    source), so all three stack in the same slot. */
 .trackerItem {
   position: fixed;
@@ -218,70 +169,9 @@
   position: static;
 }
 
-@media screen and (min-width: 1440px) {
-  .inLogo {
-    padding: 40px;
-  }
-
-  .inLink {
-    display: flex;
-  }
-}
-
 @media screen and (min-width: 1920px) {
-  .trackerRail {
-    background-color: #67666680;
-  }
-
-  .trackerHeading {
-    position: relative;
-    width: 120px;
-    height: 25px;
-    padding-left: 6px;
-  }
-
   .trackerItem {
     position: absolute;
-  }
-}
-
-/* ---------- Cursor follower ---------- */
-
-.mouseWrapper {
-  position: fixed;
-  inset: 0 auto auto 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-}
-
-.cursor {
-  position: relative;
-  width: 15px;
-  height: 15px;
-  background-color: var(--ip-turq);
-  opacity: 0;
-  will-change: transform;
-}
-
-@media screen and (min-width: 1920px) {
-  .mouseWrapper {
-    z-index: 0;
-  }
-
-  .cursor {
-    z-index: 7000;
-    width: 20px;
-    height: 20px;
-  }
-}
-
-@media (hover: none), (pointer: coarse) {
-  .mouseWrapper {
-    display: none;
   }
 }
 
@@ -587,59 +477,6 @@
   opacity: 1;
 }
 
-/* Vertical email link */
-
-.emailRail {
-  position: fixed;
-  inset: 0 0 auto auto;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 10vw;
-  height: 100vh;
-  text-align: center;
-}
-
-.emailLink {
-  position: fixed;
-  display: inline-block;
-  color: var(--ip-grey-900);
-  font-size: 20px;
-  font-weight: 900;
-  line-height: 22.4px;
-  text-align: justify;
-  text-decoration: underline;
-  transform: rotate(-90deg);
-}
-
-.emailWrapper {
-  display: block;
-  height: 20px;
-  overflow: hidden;
-}
-
-.emailText {
-  display: block;
-  transition: transform 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.emailLink:hover .emailText,
-.emailLink:focus-visible .emailText {
-  transform: translateY(-24px);
-}
-
-/* Side rails fade out while the footer's dark treatment is showing. */
-.emailLink,
-.trackerContainer {
-  transition: opacity 500ms;
-}
-
-:global(html[data-footer-in-view="true"]) .emailLink,
-:global(html[data-footer-in-view="true"]) .trackerContainer {
-  opacity: 0;
-}
-
 /* ---------- Breakpoints ---------- */
 
 @media screen and (min-width: 1920px) {
@@ -670,11 +507,6 @@
 
   .arrowHover {
     margin-bottom: -14px;
-  }
-
-  .emailLink {
-    height: 20px;
-    overflow: hidden;
   }
 }
 
@@ -714,10 +546,6 @@
 
   .workTitle {
     font-size: 32px;
-  }
-
-  .emailRail {
-    width: 10%;
   }
 }
 
@@ -785,10 +613,6 @@
   .arrow,
   .arrowHover {
     height: 1rem;
-  }
-
-  .emailLink {
-    font-size: 16px;
   }
 }
 

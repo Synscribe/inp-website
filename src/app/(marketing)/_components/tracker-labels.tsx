@@ -64,15 +64,8 @@ function interpolate(frames: Keyframes, progress: number): number {
   return last[1];
 }
 
-type SectionTrackerProps = {
-  linkedinUrl: string;
-};
-
-/**
- * Fixed left rail: LinkedIn mark, divider rail, and a rotated label naming
- * the section currently in view.
- */
-export function SectionTracker({ linkedinUrl }: SectionTrackerProps) {
+/** Homepage rail labels naming the section currently in view. */
+export function TrackerLabels() {
   const labelRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   useEffect(() => {
@@ -121,38 +114,24 @@ export function SectionTracker({ linkedinUrl }: SectionTrackerProps) {
   }, []);
 
   return (
-    <div className={styles.tracker}>
-      <div className={styles.trackerContainer}>
-        <div className={styles.inLogo}>
-          <a
-            aria-label="Ink and Pixel on LinkedIn"
-            className={styles.inLink}
-            href={linkedinUrl}
-            rel="noopener noreferrer"
-            target="_blank"
-          />
+    <>
+      {LABELS.map((item, index) => (
+        <div
+          className={cn(
+            styles.trackerItem,
+            "lato" in item && styles.trackerItemLato,
+          )}
+          key={item.label}
+          ref={(element) => {
+            labelRefs.current[index] = element;
+          }}
+        >
+          {item.label}
         </div>
-        <div className={styles.trackerRail} />
-        <div aria-hidden="true" className={styles.trackerHeading}>
-          {LABELS.map((item, index) => (
-            <div
-              className={cn(
-                styles.trackerItem,
-                "lato" in item && styles.trackerItemLato,
-              )}
-              key={item.label}
-              ref={(element) => {
-                labelRefs.current[index] = element;
-              }}
-            >
-              {item.label}
-            </div>
-          ))}
-          <div className={cn(styles.trackerItem, styles.trackerItemStatic)}>
-            reach out
-          </div>
-        </div>
+      ))}
+      <div className={cn(styles.trackerItem, styles.trackerItemStatic)}>
+        reach out
       </div>
-    </div>
+    </>
   );
 }

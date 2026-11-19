@@ -4,12 +4,15 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import { CursorFollower } from "@/components/cursor-follower";
+import { EmailRail } from "@/components/email-rail";
+import { SectionRail } from "@/components/section-rail";
 import { siteConfig } from "@/config/site";
+import { projects, projectThumbnailSrc } from "@/content/projects";
 import { cn } from "@/lib/utils";
 import { createPageMetadata } from "@/lib/seo";
 
-import { CursorFollower } from "./_components/cursor-follower";
-import { SectionTracker } from "./_components/section-tracker";
+import { TrackerLabels } from "./_components/tracker-labels";
 import styles from "./home.module.css";
 
 // The source title is the bare brand name and the source has no meta
@@ -60,49 +63,6 @@ const serviceRows = [
   },
 ] as const;
 
-const works = [
-  {
-    slug: "npark-paper-models",
-    title: "Responsible Pet Owner",
-    image: "responsible-pet-owner.jpg",
-  },
-  {
-    slug: "lta-annual-report",
-    title: "LTA Annual Report 2023",
-    image: "lta-annual-report.jpg",
-  },
-  {
-    slug: "mom-world-mental-health-day-2022",
-    title: "World Mental Health Day",
-    image: "world-mental-health-day.jpg",
-  },
-  {
-    slug: "tiktok-travel-unboxed",
-    title: "Travel Unboxed",
-    image: "travel-unboxed.jpg",
-  },
-  {
-    slug: "mnd-youth-challenge-video",
-    title: "Youth Challenge",
-    image: "youth-challenge.jpg",
-  },
-  {
-    slug: "wsg-sgunited-job-skills-sgujs",
-    title: "SGUnited Jobs & Skills",
-    image: "sgunited-jobs-skills.jpg",
-  },
-  {
-    slug: "npark-green-plan",
-    title: "Singapore Green Plan 2030",
-    image: "singapore-green-plan.gif",
-  },
-  {
-    slug: "test-with-tiktok",
-    title: "Test with TikTok",
-    image: "test-with-tiktok.gif",
-  },
-] as const;
-
 // Matches the width pattern in home.module.css (40/60, 65/35, 100, 33×3).
 const workSizes = [
   "(max-width: 568px) 100vw, 40vw",
@@ -130,10 +90,12 @@ export default function HomePage() {
         />
         <div className={styles.splashCircle} />
       </div>
-      <CursorFollower />
+      <CursorFollower smoothing={61} />
       <div aria-hidden="true" className={styles.square} />
       <div aria-hidden="true" className={styles.circle} />
-      <SectionTracker linkedinUrl={siteConfig.social.linkedin} />
+      <SectionRail linkDisplay="switch">
+        <TrackerLabels />
+      </SectionRail>
 
       <main id="main-content">
         <section className={styles.section} id="hero">
@@ -209,7 +171,7 @@ export default function HomePage() {
           id="homepage-work"
         >
           <ul className={styles.worksList} role="list">
-            {works.map((work, index) => (
+            {projects.map((work, index) => (
               <li className={styles.workItem} key={work.slug}>
                 <Link
                   className={styles.workLink}
@@ -224,8 +186,8 @@ export default function HomePage() {
                       className={styles.workImage}
                       fill
                       sizes={workSizes[index]}
-                      src={`/media/home/works/${work.image}`}
-                      unoptimized={work.image.endsWith(".gif")}
+                      src={projectThumbnailSrc(work)}
+                      unoptimized={work.thumbnail.endsWith(".gif")}
                     />
                   </div>
                 </Link>
@@ -259,21 +221,7 @@ export default function HomePage() {
         </section>
       </main>
 
-      <div className={styles.emailRail}>
-        <a
-          className={styles.emailLink}
-          href={`mailto:${siteConfig.contact.email}`}
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <span className={styles.emailWrapper}>
-            <span className={styles.emailText}>{siteConfig.contact.email}</span>
-            <span aria-hidden="true" className={styles.emailText}>
-              {siteConfig.contact.email}
-            </span>
-          </span>
-        </a>
-      </div>
+      <EmailRail />
     </>
   );
 }
