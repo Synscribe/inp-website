@@ -96,6 +96,75 @@ export type ProjectSlug = (typeof projects)[number]["slug"];
 
 // Migrated project bodies. Projects without an entry are not published yet.
 export const projectDetails: Partial<Record<ProjectSlug, ProjectDetail>> = {
+  "mnd-youth-challenge-video": {
+    deliverable: "video graphics : social media (facebook)",
+    blocks: [
+      {
+        type: "paragraph",
+        parts: [
+          "Creating an energetic video to engage our youths is not a challenging brief. However, there was no budget for live filming. Now that is challenging!",
+          { br: true },
+        ],
+      },
+      {
+        type: "paragraph",
+        parts: [
+          "Our team kept production costs low to meet the brief by combining stock visuals with past event photos, fast-paced editing coupled with uptempo music, and big typography layout. We breathed a sigh of relief when the client approved the final video with satisfaction.",
+        ],
+      },
+      {
+        type: "paragraph",
+        parts: [
+          "To see the animation, please click ",
+          {
+            href: "https://www.facebook.com/oneservice.community/videos/283446296283514/",
+            text: "here",
+          },
+          ".",
+        ],
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/mnd-youth-challenge-video/mnd-youth-challenge-video-1.png",
+        width: 3024,
+        height: 1964,
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/mnd-youth-challenge-video/mnd-youth-challenge-video-2.png",
+        width: 3024,
+        height: 1964,
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/mnd-youth-challenge-video/mnd-youth-challenge-video-3.png",
+        width: 3024,
+        height: 1964,
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/mnd-youth-challenge-video/mnd-youth-challenge-video-4.png",
+        width: 3024,
+        height: 1964,
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/mnd-youth-challenge-video/mnd-youth-challenge-video-5.png",
+        width: 3024,
+        height: 1964,
+      },
+    ],
+  },
   "tiktok-travel-unboxed": {
     deliverable: "marketing and promotion : online infographics",
     blocks: [

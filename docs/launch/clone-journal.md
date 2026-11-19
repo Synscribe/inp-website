@@ -45,6 +45,7 @@ Use one implementation status: `wired`, `visual-only`, `partial`, `omitted`, or 
 - `/project/lta-annual-report`: every measured box, figure, and paragraph matches; page heights match (2602px / 1764px). Pixel diff 0.11% / 0.20% (dev indicator and image resampling).
 - `/project/mom-world-mental-health-day-2022`: every measured box, figure, and paragraph matches; page heights match (4196px / 2340px). Pixel diff 0.04% / 0.15% (dev indicator and image resampling).
 - `/project/tiktok-travel-unboxed`: every measured box, figure, and paragraph matches; page heights match (1927px / 1587px). Pixel diff 0.15% / 0.22% (dev indicator and image resampling).
+- `/project/mnd-youth-challenge-video`: every measured box, figure, and paragraph matches; page heights match (4452px / 2400px). Pixel diff 0.06% / 0.15% (dev indicator, image resampling, sub-pixel image edges).
 - Remaining pixel differences come from: marquee position (time-based), `next/image` re-encoding of the work thumbnails (no visible change), sub-pixel anti-aliasing, and the dev-only Next.js indicator.
 
 ## Decisions and approvals
