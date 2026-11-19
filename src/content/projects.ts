@@ -96,6 +96,56 @@ export type ProjectSlug = (typeof projects)[number]["slug"];
 
 // Migrated project bodies. Projects without an entry are not published yet.
 export const projectDetails: Partial<Record<ProjectSlug, ProjectDetail>> = {
+  "wsg-sgunited-job-skills-sgujs": {
+    deliverable: "event collaterals services / roadshow",
+    blocks: [
+      {
+        type: "paragraph",
+        parts: [
+          "SGUnited Jobs & Skills is a roving roadshow that helps Singaporeans at different stages of their career to develop and grow their careers in post-pandemic Singapore.",
+          { br: true },
+        ],
+      },
+      {
+        type: "paragraph",
+        parts: [
+          "Working in collaboration with Workforce Singapore’s appointed event company, we developed a ‘pathway to jobs and skills’ concept to communicate the many different ways to rise up in one’s career pathway. We opted for the ‘gamification’ art direction to make learning fun, engaging and enjoyable for the audience.",
+        ],
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/wsg-sgunited-job-skills-sgujs/wsg-sgunited-job-skills-sgujs-1.jpg",
+        width: 2000,
+        height: 1283,
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/wsg-sgunited-job-skills-sgujs/wsg-sgunited-job-skills-sgujs-2.jpg",
+        width: 1518,
+        height: 1119,
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/wsg-sgunited-job-skills-sgujs/wsg-sgunited-job-skills-sgujs-3.jpg",
+        width: 1600,
+        height: 1200,
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/wsg-sgunited-job-skills-sgujs/wsg-sgunited-job-skills-sgujs-4.jpg",
+        width: 1600,
+        height: 1200,
+      },
+    ],
+  },
   "npark-green-plan": {
     deliverable: "illustrations / digital interactive : social media / mobile",
     blocks: [
