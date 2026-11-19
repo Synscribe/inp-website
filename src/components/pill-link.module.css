@@ -1,0 +1,152 @@
+/*
+ * Rounded "next" pill link from the source (`.next-text-link`): a blue fill
+ * slides up on hover, the label turns white and a white arrow fades in.
+ * Variants: `inline` (homepage `.home`), `flex` (project pages), and icon-only
+ * circles for previous/next project links.
+ */
+
+.pill {
+  position: relative;
+  display: flex;
+  flex: 0 auto;
+  flex-flow: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  isolation: isolate;
+  overflow: hidden;
+  width: auto;
+  margin: 0 auto 0 0;
+  padding: 0 28px 5px 19px;
+  border: 1px solid var(--ip-blue);
+  border-radius: 500px;
+  color: #fff;
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 22.4px;
+  text-decoration: none;
+}
+
+.pillInline {
+  display: inline-block;
+}
+
+.pill.pillIcon {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  margin-right: 0;
+  margin-left: 0;
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+.container {
+  position: relative;
+  display: block;
+}
+
+.text {
+  display: inline-block;
+  margin: 10px 32px 7px 0;
+  color: var(--ip-blue);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  transition: color 200ms;
+}
+
+.iconBox {
+  position: relative;
+  display: inline-block;
+}
+
+.arrow {
+  position: static;
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  height: 20px;
+  margin-top: 3px;
+  vertical-align: middle;
+}
+
+.arrow.arrowHover {
+  position: absolute;
+  inset: auto 0 50%;
+  height: 20px;
+  margin-top: auto;
+  margin-bottom: -11px;
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.fill {
+  position: absolute;
+  inset: 100% auto auto -1%;
+  z-index: -1;
+  width: 102%;
+  height: 50px;
+  background-color: var(--ip-blue);
+  transition: transform 200ms;
+}
+
+.pill:hover .fill,
+.pill:focus-visible .fill {
+  transform: translateY(-100%);
+}
+
+.pill:hover .text,
+.pill:focus-visible .text {
+  color: #fff;
+}
+
+.pill:hover .arrowHover,
+.pill:focus-visible .arrowHover {
+  opacity: 1;
+}
+
+@media screen and (min-width: 1920px) {
+  .pill {
+    display: inline-block;
+    justify-content: flex-end;
+    font-size: 32px;
+  }
+
+  .pill.pillIcon {
+    display: flex;
+    justify-content: center;
+  }
+
+  .arrow {
+    height: 1.5rem;
+  }
+
+  .arrow.arrowHover {
+    height: 1.5rem;
+    margin-bottom: -14px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .pill {
+    flex-wrap: nowrap;
+    padding-right: 9px;
+    padding-left: 9px;
+    font-size: 24px;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .text {
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .arrow {
+    height: 1rem;
+  }
+}

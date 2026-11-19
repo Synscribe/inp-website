@@ -398,85 +398,6 @@
   object-position: 50% 50%;
 }
 
-/* View more */
-
-.viewMore {
-  position: relative;
-  display: inline-block;
-  isolation: isolate;
-  overflow: hidden;
-  padding: 0 28px 5px 19px;
-  border: 1px solid var(--ip-blue);
-  border-radius: 500px;
-  color: #fff;
-  font-size: 27px;
-  font-weight: 400;
-  line-height: 22.4px;
-  text-decoration: none;
-}
-
-.viewMoreInner {
-  position: relative;
-}
-
-.viewMoreText {
-  display: inline-block;
-  margin: 10px 32px 7px 0;
-  color: var(--ip-blue);
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 24px;
-  transition: color 200ms;
-}
-
-.viewMoreIcon {
-  position: relative;
-  display: inline-block;
-}
-
-.arrow {
-  display: inline-block;
-  width: auto;
-  height: 20px;
-  margin-top: 3px;
-  vertical-align: middle;
-}
-
-.arrowHover {
-  position: absolute;
-  inset: auto 0 50%;
-  height: 20px;
-  margin-top: auto;
-  margin-bottom: -11px;
-  opacity: 0;
-  transition: opacity 500ms;
-}
-
-.viewMoreFill {
-  position: absolute;
-  inset: 100% auto auto -1%;
-  z-index: -1;
-  width: 102%;
-  height: 50px;
-  background-color: var(--ip-blue);
-  transition: transform 200ms;
-}
-
-.viewMore:hover .viewMoreFill,
-.viewMore:focus-visible .viewMoreFill {
-  transform: translateY(-100%);
-}
-
-.viewMore:hover .viewMoreText,
-.viewMore:focus-visible .viewMoreText {
-  color: #fff;
-}
-
-.viewMore:hover .arrowHover,
-.viewMore:focus-visible .arrowHover {
-  opacity: 1;
-}
-
 /* ---------- Breakpoints ---------- */
 
 @media screen and (min-width: 1920px) {
@@ -494,19 +415,6 @@
 
   .workMedia {
     height: 680px;
-  }
-
-  .viewMore {
-    font-size: 32px;
-  }
-
-  .arrow,
-  .arrowHover {
-    height: 1.5rem;
-  }
-
-  .arrowHover {
-    margin-bottom: -14px;
   }
 }
 
@@ -591,28 +499,6 @@
 
   .clients {
     gap: 1em;
-  }
-
-  .viewMore {
-    padding-right: 9px;
-    padding-left: 9px;
-    font-size: 24px;
-  }
-
-  .viewMoreInner {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  .viewMoreText {
-    font-size: 16px;
-    white-space: nowrap;
-  }
-
-  .arrow,
-  .arrowHover {
-    height: 1rem;
   }
 }
 

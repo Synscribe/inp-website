@@ -1,0 +1,207 @@
+/*
+ * /project/* clone (Webflow CMS template "Projects").
+ * Key details, rich-text body (Webflow rich-text figure rules), and the
+ * view more / previous / next navigation. Breakpoints: 1920 / 991 / 767 / 479.
+ */
+
+.section {
+  position: relative;
+  display: block;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 2% 15% 10%;
+  color: #fff;
+  font-weight: 400;
+  text-align: left;
+}
+
+.keyDetails {
+  width: 65%;
+}
+
+.title {
+  display: block;
+  margin: 20px 0;
+  color: var(--ip-grey-900);
+  font-size: 72px;
+  font-weight: 100;
+  line-height: 105%;
+}
+
+.subtitles {
+  display: flex;
+  flex-flow: column;
+}
+
+.client,
+.deliverable {
+  display: inline-block;
+  margin: 0;
+  padding: 0 4px 5px 5px;
+  color: var(--ip-grey-900);
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 115%;
+}
+
+/* The source's two-class rule keeps these values at every breakpoint. */
+.deliverable {
+  padding-bottom: 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* ---------- Rich text (Webflow `.w-richtext`) ---------- */
+
+.richText {
+  width: 100%;
+  padding-left: 5px;
+  color: var(--ip-grey-900);
+}
+
+.richText::before,
+.richText::after {
+  content: " ";
+  display: table;
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.richText::after {
+  clear: both;
+}
+
+.richText p {
+  margin: 0 0 10px;
+}
+
+/* The source leaves rich-text links at the browser's default colours. */
+.richText a {
+  text-decoration: underline;
+}
+
+.richText a:link {
+  color: #0000ee;
+}
+
+.richText a:visited {
+  color: #551a8b;
+}
+
+.figure {
+  position: relative;
+  display: table;
+  max-width: 60%;
+  margin: 0 0 10px;
+}
+
+.figure > div {
+  display: inline-block;
+  color: #0000;
+  font-size: 0;
+}
+
+.figureImage {
+  display: inline-block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.figureNormal {
+  clear: both;
+}
+
+.figureFullwidth {
+  display: block;
+  clear: both;
+  width: 100%;
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.figureFullwidth > div {
+  padding-bottom: inherit;
+}
+
+.figureFloatleft {
+  float: left;
+  clear: none;
+  margin-right: 15px;
+}
+
+/* ---------- Navigation ---------- */
+
+.nav {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: space-around;
+}
+
+@media screen and (min-width: 1920px) {
+  .section {
+    padding-bottom: 5%;
+  }
+
+  .keyDetails {
+    width: 60%;
+  }
+
+  .subtitles {
+    justify-content: space-between;
+  }
+
+  .client {
+    font-weight: 400;
+  }
+
+  .description {
+    padding-bottom: 60px;
+  }
+
+  .nav {
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .keyDetails {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 45px;
+  }
+
+  .client {
+    font-size: 20px;
+  }
+
+  .richText {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .title {
+    font-size: 32px;
+  }
+
+  .client {
+    font-size: 16px;
+  }
+
+  .richText {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .description {
+    width: auto;
+  }
+}

@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { usesDefaultSiteUrl } from "@/config/env";
 import { siteConfig } from "@/config/site";
+import { projectDetails, projects } from "@/content/projects";
 import { getAllBlogPosts, type BlogPostSummary } from "@/lib/blog";
 import { getAllUseCases } from "@/lib/use-cases";
 
@@ -22,6 +23,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/our-works",
     "/team",
     "/feature",
+    ...projects
+      .filter((project) => projectDetails[project.slug])
+      .map((project) => `/project/${project.slug}`),
     "/uses",
     ...useCases.map((useCase) => `/uses/${useCase.metadata.slug}`),
     "/blog",

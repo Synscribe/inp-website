@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { CursorFollower } from "@/components/cursor-follower";
 import { EmailRail } from "@/components/email-rail";
+import { PillLink } from "@/components/pill-link";
 import { SectionRail } from "@/components/section-rail";
 import { siteConfig } from "@/config/site";
 import { projects, projectThumbnailSrc } from "@/content/projects";
@@ -194,30 +195,7 @@ export default function HomePage() {
               </li>
             ))}
           </ul>
-          <Link className={styles.viewMore} href="/our-works">
-            <span className={cn(styles.viewMoreInner, "block")}>
-              <span className={styles.viewMoreText}>view more</span>
-              <span className={styles.viewMoreIcon}>
-                {/* eslint-disable-next-line @next/next/no-img-element -- source arrow icon */}
-                <img
-                  alt=""
-                  className={styles.arrow}
-                  height={24}
-                  src="/media/shared/arrow-next-blue.svg"
-                  width={25}
-                />
-                {/* eslint-disable-next-line @next/next/no-img-element -- source arrow icon */}
-                <img
-                  alt=""
-                  className={cn(styles.arrow, styles.arrowHover)}
-                  height={24}
-                  src="/media/shared/arrow-next-white.svg"
-                  width={25}
-                />
-              </span>
-            </span>
-            <span className={styles.viewMoreFill} />
-          </Link>
+          <PillLink href="/our-works" label="view more" variant="inline" />
         </section>
       </main>
 
