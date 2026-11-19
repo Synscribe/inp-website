@@ -96,6 +96,59 @@ export type ProjectSlug = (typeof projects)[number]["slug"];
 
 // Migrated project bodies. Projects without an entry are not published yet.
 export const projectDetails: Partial<Record<ProjectSlug, ProjectDetail>> = {
+  "npark-green-plan": {
+    deliverable: "illustrations / digital interactive : social media / mobile",
+    blocks: [
+      {
+        type: "paragraph",
+        parts: [
+          "Our client already had a theme (City in Nature) and an idea (using a panoramic image) in mind. The idea works! But being the restless folks we are, there’s always something to improve the concept. And boy, are we glad we found it. ",
+          { br: true },
+        ],
+      },
+      {
+        type: "paragraph",
+        parts: [
+          "We were delighted that National Parks Board accepted our proposal to craft a Facebook 360 photo so the viewer can learn more about the Singapore Green Plan 2030. An interactive experience for a whole-of-nation movement to advance Singapore’s national agenda on sustainable development. ",
+        ],
+      },
+      {
+        type: "paragraph",
+        parts: [
+          "To see the interactive version, please click ",
+          {
+            href: "https://www.facebook.com/nparksbuzz/posts/pfbid027vx2EpyVoJe2iahbTrEocSKNHcBWfGtsBfiNRpeHHHLnJ48TRrLFs8N1gkuzey9jl",
+            text: "here",
+          },
+          ".",
+        ],
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/npark-green-plan/npark-green-plan-1.jpg",
+        width: 2000,
+        height: 1102,
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/npark-green-plan/npark-green-plan-2.jpg",
+        width: 2000,
+        height: 1474,
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/thumbnails/singapore-green-plan.gif",
+        width: 480,
+        height: 683,
+      },
+    ],
+  },
   "mnd-youth-challenge-video": {
     deliverable: "video graphics : social media (facebook)",
     blocks: [
