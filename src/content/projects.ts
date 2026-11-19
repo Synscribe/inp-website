@@ -96,6 +96,40 @@ export type ProjectSlug = (typeof projects)[number]["slug"];
 
 // Migrated project bodies. Projects without an entry are not published yet.
 export const projectDetails: Partial<Record<ProjectSlug, ProjectDetail>> = {
+  "tiktok-travel-unboxed": {
+    deliverable: "marketing and promotion : online infographics",
+    blocks: [
+      {
+        type: "paragraph",
+        parts: [
+          "TikTok was looking to compile collaterals that complement their webinar content for participants to download/revisit. Our additional task was to create designs that matched the travel theme brief. ",
+          { br: true },
+        ],
+      },
+      {
+        type: "paragraph",
+        parts: [
+          "The design process includes pouring through the content to distil it into customised infographics that hit the best practices: ",
+          { br: true },
+          "(1) one central idea, ",
+          { br: true },
+          "(2) clear data presentation, ",
+          { br: true },
+          "(3) importance layering—must see/should see/can see, ",
+          { br: true },
+          "(4) easy for the eye to navigate. ",
+        ],
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/tiktok-travel-unboxed/tiktok-travel-unboxed-1.png",
+        width: 3773,
+        height: 1754,
+      },
+    ],
+  },
   "mom-world-mental-health-day-2022": {
     deliverable: "print (cards and booklet) / social media (facebook)",
     blocks: [
