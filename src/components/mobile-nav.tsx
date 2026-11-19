@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 
 import type { NavigationItem } from "@/config/site";
@@ -19,6 +20,7 @@ type MobileNavProps = {
  */
 export function MobileNav({ items }: MobileNavProps) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
   const panelId = useId();
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -80,6 +82,7 @@ export function MobileNav({ items }: MobileNavProps) {
         <nav aria-label="Mobile navigation">
           {items.map((item) => (
             <Link
+              aria-current={pathname === item.href ? "page" : undefined}
               className={styles.mobileLink}
               href={item.href}
               key={item.href}

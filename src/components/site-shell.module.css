@@ -99,12 +99,16 @@
   transition: transform 200ms ease-out;
 }
 
-/* The source animates only the team and feature links on hover. */
-.navLinkSlide:hover .navText,
-.navLinkSlide:hover .navTextHover,
-.navLinkSlide:focus-visible .navText,
-.navLinkSlide:focus-visible .navTextHover {
+.navLink:hover .navText,
+.navLink:hover .navTextHover,
+.navLink:focus-visible .navText,
+.navLink:focus-visible .navTextHover {
   transform: translateY(-24px);
+}
+
+.navLinkCurrent {
+  position: relative;
+  color: var(--ip-blue);
 }
 
 .menuButton {
@@ -173,6 +177,10 @@
   }
 
   .mobilePanel[hidden] {
+    display: none;
+  }
+
+  .mobileLink[aria-current="page"] {
     display: none;
   }
 
