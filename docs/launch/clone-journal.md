@@ -39,6 +39,7 @@ Use one implementation status: `wired`, `visual-only`, `partial`, `omitted`, or 
 
 - Desktop 1440×900 and mobile 390×844 (2x). Every measured section, heading, logo, card, button, and footer box matches the source within 1px, and full page heights are identical (5737px desktop, 4508px mobile).
 - `/our-works`: every measured box matches within 1px; page heights match (4346px desktop, 4664px mobile). Pixel diff 1.31% / 2.22%, from thumbnail resampling, GIF frame timing, and the dev indicator.
+- `/team`: every measured box matches within 1px; page heights match (3381px / 4676px). Pixel diff 0.08% / 0.14%. Mugshots are served through `next/image` from the 2560px source PNGs (2.6 to 3.2 MB each).
 - Remaining pixel differences come from: marquee position (time-based), `next/image` re-encoding of the work thumbnails (no visible change), sub-pixel anti-aliasing, and the dev-only Next.js indicator.
 
 ## Decisions and approvals

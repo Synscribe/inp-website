@@ -12,49 +12,6 @@
   text-align: left;
 }
 
-/* Inner-page hero: headline left, intro right. */
-
-.innerPage {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-.introHeadline {
-  position: relative;
-  display: inline-block;
-  color: var(--ip-grey-900);
-  line-height: 100%;
-}
-
-.heading {
-  display: block;
-  margin: 20px 0 10px auto;
-  padding: 0 22px 8px 0;
-  font-size: 150px;
-  font-weight: 200;
-  line-height: 90%;
-  text-align: left;
-}
-
-.fullStop {
-  position: absolute;
-  inset: auto 0 0 auto;
-  width: 15px;
-  height: auto;
-  margin-bottom: 31px;
-}
-
-.introDesc {
-  width: 48%;
-  margin: 0 0 18px;
-  padding: 0 0 0 5px;
-  color: var(--ip-grey-900);
-  font-size: 42px;
-  font-weight: 700;
-  line-height: 114%;
-}
-
 /* Works grid. Widths follow the source's site-wide nth-child pattern. */
 
 .list {
@@ -162,26 +119,6 @@
 }
 
 @media screen and (max-width: 991px) {
-  .innerPage {
-    display: block;
-  }
-
-  .heading {
-    font-size: 120px;
-  }
-
-  .fullStop {
-    inset: auto 0 -10% auto;
-    width: 16px;
-    max-width: 90%;
-    margin-bottom: 42px;
-  }
-
-  .introDesc {
-    width: 100%;
-    font-size: 32px;
-  }
-
   .item {
     height: 400px;
     margin-bottom: 18%;
@@ -209,21 +146,5 @@
 @media only screen and (max-width: 568px) {
   .item:nth-child(1n) {
     width: 100%;
-  }
-}
-
-@media screen and (max-width: 479px) {
-  .heading {
-    font-size: 64px;
-  }
-
-  .fullStop {
-    width: 10px;
-    margin-right: 10px;
-    margin-bottom: 26px;
-  }
-
-  .introDesc {
-    font-size: 24px;
   }
 }

@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { CursorFollower } from "@/components/cursor-follower";
 import { EmailRail } from "@/components/email-rail";
+import { InnerHero } from "@/components/inner-hero";
 import { SectionRail } from "@/components/section-rail";
 import { projects, projectThumbnailSrc } from "@/content/projects";
 import { createPageMetadata } from "@/lib/seo";
@@ -42,29 +43,11 @@ export default function OurWorksPage() {
       <CursorFollower smoothing={87} />
 
       <main id="main-content">
-        <section className={styles.section}>
-          <div className={styles.innerPage}>
-            <div className={styles.introHeadline}>
-              <h1 className={styles.heading}>
-                our
-                <br />
-                works
-              </h1>
-              {/* eslint-disable-next-line @next/next/no-img-element -- brand full stop glyph */}
-              <img
-                alt=""
-                className={styles.fullStop}
-                height={21}
-                src="/media/shared/full-stop.svg"
-                width={22}
-              />
-            </div>
-            <p className={styles.introDesc}>{intro}</p>
-          </div>
+        <InnerHero intro={intro} titleLines={["our", "works"]}>
           <SectionRail inner linkDisplay="inline">
             the talks
           </SectionRail>
-        </section>
+        </InnerHero>
 
         <section aria-label="Projects" className={styles.section}>
           <ul className={styles.list} role="list">
