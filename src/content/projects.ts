@@ -96,6 +96,44 @@ export type ProjectSlug = (typeof projects)[number]["slug"];
 
 // Migrated project bodies. Projects without an entry are not published yet.
 export const projectDetails: Partial<Record<ProjectSlug, ProjectDetail>> = {
+  "lta-annual-report": {
+    deliverable: "publication : online (PDF)",
+    blocks: [
+      {
+        type: "paragraph",
+        parts: [
+          "The report frames Singapore’s land transport system as a living, breathing network with a steady pulse that keeps the city in motion. The concept is carried through in the copy, positioning transport as an essential part of daily life. Infographics and well-placed stats highlight key achievements, helping to guide the reader through LTA’s progress with clarity and focus.",
+        ],
+      },
+      {
+        type: "paragraph",
+        parts: [
+          "To see the full annual report, please click ",
+          {
+            href: "https://www.lta.gov.sg/content/dam/ltagov/who_we_are/statistics_and_publications/report/pdf/LTA_AR2223.pdf",
+            text: "here",
+          },
+          ".",
+        ],
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/lta-annual-report/lta-annual-report-1.jpg",
+        width: 4287,
+        height: 2554,
+      },
+      { type: "paragraph", parts: ["\u200d"] },
+      {
+        type: "figure",
+        align: "fullwidth",
+        src: "/media/projects/lta-annual-report/lta-annual-report-2.jpg",
+        width: 4287,
+        height: 2554,
+      },
+    ],
+  },
   "npark-paper-models": {
     deliverable: "marketing and promotion : print (paper craft activity)",
     blocks: [
