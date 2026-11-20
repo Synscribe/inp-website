@@ -17,6 +17,8 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "See how to plan website migrations, SaaS rebuilds, startup launches, and SEO landing pages without missing the work that matters.",
   path: "/uses",
+  // Starter template route: kept but hidden from search (2026-11-20).
+  noIndex: true,
 });
 
 export default async function UsesPage() {

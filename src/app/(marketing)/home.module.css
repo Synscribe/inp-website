@@ -231,6 +231,22 @@
   line-height: 114%;
 }
 
+/* Supporting line under the H1 (SEO hero copy, approved 2026-11-20). */
+.introSupport {
+  width: 64%;
+  margin: 24px 0 10px;
+  padding-left: 5px;
+  color: var(--ip-grey-900);
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 140%;
+}
+
+.introSupport a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 /* Clients */
 
 .clients {
@@ -440,6 +456,11 @@
     font-size: 32px;
   }
 
+  .introSupport {
+    width: 100%;
+    font-size: 18px;
+  }
+
   .clients {
     gap: 2.5em;
   }
@@ -495,6 +516,10 @@
 
   .introDesc {
     font-size: 24px;
+  }
+
+  .introSupport {
+    font-size: 16px;
   }
 
   .clients {

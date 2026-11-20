@@ -31,6 +31,8 @@ export const metadata: Metadata = {
     description:
       "Read practical articles from the publication connected to this website.",
     path: "/blog",
+    // Starter template route: kept but hidden from search (2026-11-20).
+    noIndex: true,
   }),
   alternates: {
     canonical: "/blog",

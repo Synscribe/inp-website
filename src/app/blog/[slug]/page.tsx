@@ -50,6 +50,8 @@ export async function generateMetadata({
     description: descriptionFromPost(post.description, post.content),
     path: `/blog/${post.slug}`,
     imagePath: post.image ?? undefined,
+    // Starter template route: kept but hidden from search (2026-11-20).
+    noIndex: true,
   });
 }
 

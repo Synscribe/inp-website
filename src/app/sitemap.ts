@@ -1,23 +1,12 @@
 import type { MetadataRoute } from "next";
 
-import { usesDefaultSiteUrl } from "@/config/env";
 import { siteConfig } from "@/config/site";
 import { projectDetails, projects } from "@/content/projects";
-import { getAllBlogPosts, type BlogPostSummary } from "@/lib/blog";
-import { getAllUseCases } from "@/lib/use-cases";
 
-export const dynamic = "force-dynamic";
-
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const useCases = await getAllUseCases();
-  let blogPosts: BlogPostSummary[] = [];
-
-  try {
-    blogPosts = (await getAllBlogPosts()).posts;
-  } catch {
-    // Keep the local routes discoverable during a temporary CMS outage.
-  }
-
+// Only the cloned Ink and Pixel pages are listed. Starter template routes
+// (/uses, /blog, /contact, /privacy, /terms) remain reachable but are
+// noindexed and deliberately left out (decision 2026-11-20).
+export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     "/",
     "/our-works",
@@ -26,19 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...projects
       .filter((project) => projectDetails[project.slug])
       .map((project) => `/project/${project.slug}`),
-    "/uses",
-    ...useCases.map((useCase) => `/uses/${useCase.metadata.slug}`),
-    "/blog",
-    "/contact",
   ];
 
-  if (!usesDefaultSiteUrl) routes.push("/privacy", "/terms");
-
-  return [
-    ...routes.map((route) => ({ url: `${siteConfig.url}${route}` })),
-    ...blogPosts.map((post) => ({
-      url: `${siteConfig.url}/blog/${post.slug}`,
-      lastModified: post.updatedAt,
-    })),
-  ];
+  return routes.map((route) => ({ url: `${siteConfig.url}${route}` }));
 }

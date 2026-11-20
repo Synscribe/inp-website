@@ -9,7 +9,7 @@ export const siteConfig = Object.freeze({
   name: "Ink and Pixel",
   legalName: "ink and pixel pte ltd",
   description:
-    "We are a creative agency with an extended network of expertise. Our agency is about people who love creating, designing and developing projects.",
+    "Ink and Pixel is a creative agency in Singapore for public-sector and corporate design.",
   url: env.siteUrl,
   locale: "en-SG",
   navigation: [

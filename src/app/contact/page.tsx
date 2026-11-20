@@ -17,6 +17,8 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Tell us about the website you want to migrate, rebuild, or launch.",
   path: "/contact",
+  // Starter template route: kept but hidden from search (2026-11-20).
+  noIndex: true,
 });
 
 const usefulDetails = [

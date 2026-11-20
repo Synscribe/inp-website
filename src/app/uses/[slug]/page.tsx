@@ -43,6 +43,8 @@ export async function generateMetadata({
     title: useCase.metadata.title,
     description: useCase.metadata.description,
     path: `/uses/${useCase.metadata.slug}`,
+    // Starter template route: kept but hidden from search (2026-11-20).
+    noIndex: true,
   });
 }
 

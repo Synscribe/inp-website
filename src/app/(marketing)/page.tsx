@@ -16,15 +16,17 @@ import { createPageMetadata } from "@/lib/seo";
 import { TrackerLabels } from "./_components/tracker-labels";
 import styles from "./home.module.css";
 
-// The source title is the bare brand name and the source has no meta
-// description; the description reuses the source hero copy verbatim.
+// Homepage SEO (approved 2026-11-20): target "creative agency Singapore".
 export const metadata: Metadata = {
   ...createPageMetadata({
-    title: siteConfig.name,
-    description: siteConfig.description,
+    title: "Creative Agency Singapore for Public Sector | Ink and Pixel",
+    description:
+      "Creative agency in Singapore for statutory boards and corporates: annual reports, infographics, event collateral, campaigns and illustration. See our work.",
     path: "/",
   }),
-  title: { absolute: siteConfig.name },
+  title: {
+    absolute: "Creative Agency Singapore for Public Sector | Ink and Pixel",
+  },
 };
 
 // Logos are small source JPEGs (487px wide); serving them as-is keeps the
@@ -101,7 +103,8 @@ export default function HomePage() {
       <main id="main-content">
         <section className={styles.section} id="hero">
           <div className={styles.introHeadline}>
-            <h1 className={styles.heading}>hey</h1>
+            {/* Decorative greeting from the source design; the H1 is below. */}
+            <p className={styles.heading}>hey</p>
             {/* eslint-disable-next-line @next/next/no-img-element -- brand full stop glyph */}
             <img
               alt=""
@@ -111,7 +114,17 @@ export default function HomePage() {
               width={22}
             />
           </div>
-          <p className={styles.introDesc}>{siteConfig.description}</p>
+          <h1 className={styles.introDesc}>{siteConfig.description}</h1>
+          <p className={styles.introSupport}>
+            Government work is our core practice: six of our eight published
+            case studies are for the public sector. We design annual reports,
+            infographics, event collateral, campaigns and original illustration
+            for clients including NParks, LTA, MOM, WSG, PUB, NCSS and EDB. Our{" "}
+            <Link href="/project/lta-annual-report">
+              LTA Annual Report 2023
+            </Link>{" "}
+            is published on lta.gov.sg.
+          </p>
         </section>
 
         <div className={styles.divider} />
